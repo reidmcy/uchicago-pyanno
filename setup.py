@@ -17,7 +17,7 @@ setup_dict = dict(
     long_description = LONG_DESCRIPTION,
 
     url = 'https://github.com/reidmcy/uchicago-pyanno',
-    download_url = "https://github.com/reidmcy/uchicago-pyanno/archive/{.1.tar.gz",
+    download_url = "https://github.com/reidmcy/uchicago-pyanno/archive/0.1.tar.gz",
 
     license='BSD',
     platforms = ["Any"],
