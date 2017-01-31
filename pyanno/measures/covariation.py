@@ -4,7 +4,7 @@
 
 """Standard reliability and covariation measures."""
 
-from __future__ import division
+
 
 import numpy as np
 import scipy.stats

@@ -88,7 +88,7 @@ class TestModelBt(unittest.TestCase):
         max_llhood = true_model.log_likelihood(annotations)
 
         # perturb gamma
-        for _ in xrange(20):
+        for _ in range(20):
             theta = true_model.theta
             gamma = np.random.normal(loc=true_model.gamma, scale=0.1)
             gamma = np.clip(gamma, 0., 1.)
@@ -98,7 +98,7 @@ class TestModelBt(unittest.TestCase):
             self.assertGreater(max_llhood, llhood)
 
         # perturb theta
-        for _ in xrange(20):
+        for _ in range(20):
             gamma = true_model.gamma
             theta = np.random.normal(loc=true_model.theta, scale=0.1)
             theta = np.clip(theta, 0., 1.)

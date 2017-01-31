@@ -71,7 +71,7 @@ def _compatibility_tables(nclasses):
     2 2 1
     """
 
-    if not _compatibility_tables_cache.has_key(nclasses):
+    if nclasses not in _compatibility_tables_cache:
         compatibility = defaultdict(list)
 
         # aaa
@@ -341,7 +341,7 @@ class ModelA(AbstractModel):
         # as in Table 3: 0=aaa, 1=aaA, 2=aAa, 3=Aaa, 4=Aa@
         nitems_per_loop = incorrect.shape[0]
         agreement = np.empty((nitems_per_loop,), dtype=int)
-        for i in xrange(nitems_per_loop):
+        for i in range(nitems_per_loop):
             # generate agreement pattern according to A_ijk
             agreement[i] = random_categorical(
                 agreement_tbl[correct_idx[i]], 1)
@@ -355,7 +355,7 @@ class ModelA(AbstractModel):
         omega = self.omega
         annotations = np.empty((nitems_per_loop, 3), dtype=int)
 
-        for i in xrange(nitems_per_loop):
+        for i in range(nitems_per_loop):
             # get all compatible annotations
             compatible = _compatibility_tables(self.nclasses)[agreement[i]]
             # compute probability of each possible annotation

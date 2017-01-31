@@ -59,7 +59,7 @@ def _key_event_repackaging(key_event):
         elif key_code == wx.WXK_COMMAND:
             character = 'Menu'
         else:
-            character = unichr(key_code).lower()
+            character = chr(key_code).lower()
 
         return KeyEvent(event_type=key_event.event_type,
                         character=character,

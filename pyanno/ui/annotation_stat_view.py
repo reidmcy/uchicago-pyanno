@@ -37,7 +37,7 @@ GLOBAL_STATS = {
     "Cronbach's Alpha": measures.cronbachs_alpha
 }
 
-ALL_STATS_NAMES = PAIRWISE_STATS.keys() + GLOBAL_STATS.keys()
+ALL_STATS_NAMES = list(PAIRWISE_STATS.keys()) + list(GLOBAL_STATS.keys())
 
 
 class _SingleStatView(HasTraits):

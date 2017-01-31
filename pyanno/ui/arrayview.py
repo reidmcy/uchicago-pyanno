@@ -82,7 +82,7 @@ def main():
     data = [['a', 'b'], [1, 2]]
     blah = TestShowArray(data=data)
     blah.data = data
-    print blah.data
+    print(blah.data)
     blah.configure_traits()
 
 

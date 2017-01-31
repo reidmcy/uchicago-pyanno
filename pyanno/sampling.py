@@ -221,7 +221,7 @@ def _adjust_jump(step, rejection_rate, target_reject_rate, tolerance):
     """
 
     terminate = True
-    for j in xrange(step.shape[0]):
+    for j in range(step.shape[0]):
         step[j] = max(1e-6, step[j])
 
         if rejection_rate[j] != 0:

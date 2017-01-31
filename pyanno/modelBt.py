@@ -190,8 +190,8 @@ class ModelBt(AbstractModel):
         nitems = labels.shape[0]
 
         annotations = np.empty((nitems, self.nannotators), dtype=int)
-        for j in xrange(self.nannotators):
-            for i in xrange(nitems):
+        for j in range(self.nannotators):
+            for i in range(nitems):
                 distr = self._theta_to_categorical(theta[j], labels[i])
                 annotations[i,j]  = random_categorical(distr, 1)
 

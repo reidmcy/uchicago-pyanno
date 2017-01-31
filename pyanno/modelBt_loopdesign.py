@@ -49,7 +49,7 @@ _triplet_combinations = {}
 def _get_triplet_combinations(n):
     """Return array of all possible combinations of n elements in triplets.
     """
-    if not _triplet_combinations.has_key(n):
+    if n not in _triplet_combinations:
         _triplet_combinations[n] = (
             np.array([i for i in np.ndindex(n,n,n)]) )
     return _triplet_combinations[n]
@@ -211,13 +211,13 @@ class ModelBtLoopDesign(AbstractModel):
         nitems_per_loop = np.ceil(float(nitems) / nannotators)
 
         annotations = np.empty((nitems, nannotators), dtype=int)
-        for j in xrange(nannotators):
-            for i in xrange(nitems):
+        for j in range(nannotators):
+            for i in range(nitems):
                 distr = self._theta_to_categorical(theta[j], labels[i])
                 annotations[i,j]  = random_categorical(distr, 1)
 
         # mask annotation value according to loop design
-        for l in xrange(nannotators):
+        for l in range(nannotators):
             label_idx = np.arange(l+self.nannotators_per_item, l+nannotators) % 8
             annotations[l*nitems_per_loop:(l+1)*nitems_per_loop,
                         label_idx] = MISSING_VALUE
@@ -620,7 +620,7 @@ class ModelBtLoopDesign(AbstractModel):
 
         # compute posterior over psi
         psi_distr = np.zeros((nitems, nclasses))
-        for psi in xrange(nclasses):
+        for psi in range(nclasses):
             tmp = np.where(valid_annotations == psi,
                            theta_equal, theta_not_equal)
             psi_distr[:,psi] = gamma[psi] * tmp.prod(1)

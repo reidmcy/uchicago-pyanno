@@ -2,7 +2,7 @@
 # Author: Pietro Berkes <pberkes@enthought.com>
 # License: Modified BSD license (2-clause)
 
-from __future__ import division
+
 
 import unittest
 import numpy as np
@@ -34,7 +34,7 @@ class TestMeasures(unittest.TestCase):
         # perfect agreement, 2 missing annotations per row
         annotations = np.empty((nitems, nannotators), dtype=int)
 
-        for i in xrange(nitems):
+        for i in range(nitems):
             annotations[i,:] = np.random.randint(nclasses)
             perm = np.random.permutation(nclasses)
             annotations[i,perm[0:2]] = MV
@@ -343,36 +343,36 @@ class TestMeasures(unittest.TestCase):
 
         anno = self.invalid_test.annotations
 
-        self.assert_(
+        self.assertTrue(
             np.isnan(pma.scotts_pi(anno[:,0], anno[:,1], nclasses=4))
         )
 
-        self.assert_(
+        self.assertTrue(
             np.isnan(pma.cohens_kappa(anno[:,0], anno[:,1], nclasses=3))
         )
 
-        self.assert_(
+        self.assertTrue(
             np.isnan(pma.cohens_weighted_kappa(anno[:,0], anno[:,1],
                                                nclasses=5))
         )
 
-        self.assert_(
+        self.assertTrue(
             np.isnan(pma.fleiss_kappa(anno, nclasses=4))
         )
 
-        self.assert_(
+        self.assertTrue(
             np.isnan(pma.krippendorffs_alpha(anno, nclasses=7))
         )
 
-        self.assert_(
+        self.assertTrue(
             np.isnan(pmc.pearsons_rho(anno[:,0], anno[:,1], nclasses=4))
         )
 
-        self.assert_(
+        self.assertTrue(
             np.isnan(pmc.spearmans_rho(anno[:,0], anno[:,1], nclasses=4))
         )
 
-        self.assert_(
+        self.assertTrue(
             np.isnan(pmc.cronbachs_alpha(anno, nclasses=4))
         )
 

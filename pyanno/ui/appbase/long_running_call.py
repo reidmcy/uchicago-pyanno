@@ -100,7 +100,7 @@ class LongRunningCall(HasTraits):
             result = delayed_result.get()
             GUI.invoke_later(self.on_success, result)
             
-        except Exception, exc:
+        except Exception as exc:
             GUI.invoke_later(self.on_failure, exc)
                 
         return
@@ -114,8 +114,8 @@ class LongRunningCall(HasTraits):
 def main():
     # Slooow division! Divide by zero to see it fail!
     def divide(x, y): import time; time.sleep(5); return x / y
-    def divide_succeeded(result): print 'divide succeeded', result
-    def divide_failed(exc): print 'divide failed', exc
+    def divide_succeeded(result): print('divide succeeded', result)
+    def divide_failed(exc): print('divide failed', exc)
     
     from pyface.api import GUI
 

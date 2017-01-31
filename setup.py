@@ -1,4 +1,4 @@
-"""pyanno package setup definition"""
+"""2to3'd pyanno package setup definition"""
 
 
 from setuptools import setup, find_packages
@@ -9,15 +9,15 @@ with open('README') as f:
 
 
 setup_dict = dict(
-    name = "pyanno",
+    name = "pyanno3",
     version = "2.0.2",
     packages = find_packages(),
 
     description = 'Package for curating data annotation efforts.',
     long_description = LONG_DESCRIPTION,
 
-    url = 'https://github.com/enthought/uchicago-pyanno',
-    download_url = 'https://github.com/enthought/uchicago-pyanno',
+    url = 'https://github.com/reidmcy/uchicago-pyanno',
+    download_url = "https://github.com/reidmcy/uchicago-pyanno/archive/{.1.tar.gz",
 
     license='BSD',
     platforms = ["Any"],
@@ -27,7 +27,7 @@ setup_dict = dict(
     },
     include_package_data = True,
 
-    install_requires = [],
+    install_requires = ['scipy', 'numpy', 'traits'],
 
     entry_points = {
       'console_scripts': [],

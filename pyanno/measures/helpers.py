@@ -2,7 +2,7 @@
 # Author: Pietro Berkes <pberkes@enthought.com>
 # License: Modified BSD license (2-clause)
 
-from __future__ import division
+
 
 import numpy as np
 from pyanno.util import labels_count, labels_frequency, is_valid
@@ -279,7 +279,7 @@ def chance_agreement_different_frequency(annotations1, annotations2, nclasses):
 
 def compute_nclasses(*annotations):
     """Infer the number of label classes from the data."""
-    max_ = np.amax(map(np.amax, annotations))
+    max_ = np.amax(list(map(np.amax, annotations)))
     return max_ + 1
 
 

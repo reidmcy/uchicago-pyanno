@@ -2,7 +2,7 @@
 # Author: Pietro Berkes <pberkes@enthought.com>
 # License: Modified BSD license (2-clause)
 
-from cStringIO import StringIO
+from io import StringIO
 import numpy as np
 import unittest
 from pyanno.annotations import AnnotationsContainer

@@ -112,7 +112,7 @@ class DatabaseView(HasTraits):
         db = self.database.database
 
         table = []
-        for data_id in db.keys():
+        for data_id in list(db.keys()):
             results = db[data_id]
             for idx, result in enumerate(results):
                 table.append(DBEntry.from_result(idx, data_id, result))

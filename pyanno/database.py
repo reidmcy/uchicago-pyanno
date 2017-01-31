@@ -77,7 +77,7 @@ class PyannoDatabase(object):
 
         # NOTE shelves to not automatically handle changing mutable values,
         # we need to take care of it manually
-        if not self.database.has_key(data_id):
+        if data_id not in self.database:
             temp = []
         else:
             temp = self.database[data_id]
@@ -129,7 +129,7 @@ class PyannoDatabase(object):
         n = 0
         while True:
             id = '<name_{}>'.format(n)
-            if not self.database.has_key(id):
+            if id not in self.database:
                 break
             n += 1
         return id
@@ -138,7 +138,7 @@ class PyannoDatabase(object):
     def _check_consistency(self, data_id, anno_container):
         """Make sure that all entries with same ID have the same annotations.
         """
-        if self.database.has_key(data_id):
+        if data_id in self.database:
             previous = self.database[data_id]
             if len(previous) > 0:
                 # check if the new annotations are the same as the previous

@@ -210,8 +210,8 @@ class ModelB(AbstractModel):
     @staticmethod
     def _random_theta(nclasses, nannotators, alpha):
         theta = np.empty((nannotators, nclasses, nclasses))
-        for j in xrange(nannotators):
-            for k in xrange(nclasses):
+        for j in range(nannotators):
+            for k in range(nclasses):
                 theta[j, k, :] = np.random.dirichlet(alpha[k, :])
         return theta
 
@@ -252,8 +252,8 @@ class ModelB(AbstractModel):
         """
         nitems = labels.shape[0]
         annotations = np.empty((nitems, self.nannotators), dtype=int)
-        for j in xrange(self.nannotators):
-            for i in xrange(nitems):
+        for j in range(self.nannotators):
+            for i in range(nitems):
                 annotations[i,j]  = (
                     random_categorical(self.theta[j,labels[i],:], 1))
         return annotations
@@ -485,7 +485,7 @@ class ModelB(AbstractModel):
         # accuracy[j,k,k'] is P(annotation_j = k' | category=k)
         accuracy = np.empty((nannotators, nclasses, nclasses))
         accuracy.fill((1. - init_accuracy) / (nclasses - 1.))
-        for k in xrange(nclasses):
+        for k in range(nclasses):
             accuracy[:, k, k] = init_accuracy
         return accuracy
 
@@ -512,7 +512,7 @@ class ModelB(AbstractModel):
         else:
             accuracy = np.zeros((nannotators, self.nclasses, self.nclasses))
 
-        for i in xrange(nitems):
+        for i in range(nitems):
             valid = valid_mask[i,:]
             accuracy[annotators[:,valid],:,annotations[i,valid]] += category[i,:]
         accuracy /= accuracy.sum(2)[:, :, None]
@@ -623,8 +623,8 @@ class ModelB(AbstractModel):
     def _log_prior(self, prevalence, accuracy):
         alpha = self.alpha
         log_prior = dirichlet_llhood(prevalence, self.beta)
-        for j in xrange(self.nannotators):
-            for k in xrange(self.nclasses):
+        for j in range(self.nannotators):
+            for k in range(self.nclasses):
                 log_prior += dirichlet_llhood(accuracy[j,k,:], alpha[k])
         return log_prior
 
@@ -702,7 +702,7 @@ class ModelB(AbstractModel):
         pi_curr = self.pi.copy()
         label_curr = np.empty((nitems,), dtype=int)
 
-        for sidx in xrange(nsamples):
+        for sidx in range(nsamples):
             if ((sidx+1) % 50) == 0:
                 logger.info('... collected {} samples'.format(sidx+1))
 
@@ -719,7 +719,7 @@ class ModelB(AbstractModel):
 
             # 2) precompute random values
             rand = np.random.random(nitems)
-            for i in xrange(nitems):
+            for i in range(nitems):
                 # 3) samples from i-th categorical distribution
                 label_curr[i] = cum_distr[i,:].searchsorted(rand[i])
 

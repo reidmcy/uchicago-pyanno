@@ -50,7 +50,7 @@ class HintonDiagramPlot(PyannoPlotContainer):
         plot_data = self.plot_data
 
         # centers of the squares
-        centers = [(i, 0.5) for i in xrange(1, distr_len + 1)]
+        centers = [(i, 0.5) for i in range(1, distr_len + 1)]
 
         for idx, center in enumerate(centers):
             # draw square with area proportional to probability mass

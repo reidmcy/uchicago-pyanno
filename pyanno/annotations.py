@@ -93,7 +93,7 @@ class AnnotationsContainer(HasStrictTraits):
         anno = np.empty((nitems, nannotators), dtype=int)
 
         # build map from labels and missing values to annotation values
-        raw2val = dict(zip(self.labels, range(self.nclasses)))
+        raw2val = dict(list(zip(self.labels, list(range(self.nclasses)))))
         raw2val.update([(mv, MISSING_VALUE) for mv in self.missing_values])
 
         # translate

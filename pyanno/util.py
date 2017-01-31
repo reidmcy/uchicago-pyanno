@@ -280,7 +280,7 @@ def majority_vote(annotations):
 
     vote = np.empty((nitems,), dtype=int)
 
-    for i in xrange(nitems):
+    for i in range(nitems):
         if not np.any(valid[i,:]):
             # no valid entries on this row
             vote[i] = MISSING_VALUE
@@ -323,10 +323,10 @@ class benchmark(object):
     def __init__(self,name):
         self.name = name
     def __enter__(self):
-        print '---- start ----'
+        print('---- start ----')
         self.start = time.time()
     def __exit__(self,ty,val,tb):
         end = time.time()
-        print '---- stop ----'
-        print("%s : %0.3f seconds" % (self.name, end-self.start))
+        print('---- stop ----')
+        print(("%s : %0.3f seconds" % (self.name, end-self.start)))
         return False

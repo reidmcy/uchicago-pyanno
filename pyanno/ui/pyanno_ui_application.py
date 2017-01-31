@@ -131,7 +131,7 @@ class PyannoApplication(HasTraits):
         data_id = mdv.annotations_view.annotations_container.name
         if data_id is '':
             data_id = 'anonymous_annotations'
-        elif type(data_id) is unicode:
+        elif type(data_id) is str:
             u_data_id = unicodedata.normalize('NFKD', data_id)
             data_id = u_data_id.encode('ascii','ignore')
 

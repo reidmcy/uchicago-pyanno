@@ -55,7 +55,7 @@ class TestDatabase(unittest.TestCase):
         self.assertTrue(db.closed)
 
         # make sure database is closed
-        with self.assertRaisesRegexp(ValueError, 'closed shelf'):
+        with self.assertRaisesRegex(ValueError, 'closed shelf'):
             db.database['a'] = 2
 
 
@@ -66,15 +66,15 @@ class TestDatabase(unittest.TestCase):
             self.assertEqual(len(db.database), 1)
 
             results = db.retrieve_id(self.data_id1)
-            self.assert_(isinstance(results, list))
+            self.assertTrue(isinstance(results, list))
             self.assertEqual(len(results), 1)
-            self.assert_(isinstance(results[0], PyannoResult))
+            self.assertTrue(isinstance(results[0], PyannoResult))
 
             np.testing.assert_equal(results[0].anno_container.annotations,
                                     self.anno_container1.annotations)
             self.assertEqual(results[0].model.nclasses, self.model1.nclasses)
             self.assertEqual(results[0].value, self.value1)
-            self.assert_(isinstance(results[0].model, self.model1.__class__))
+            self.assertTrue(isinstance(results[0].model, self.model1.__class__))
 
             # store new entry for different annotations
             db.store_result(self.data_id2, self.anno_container2,
@@ -142,13 +142,13 @@ class TestDatabase(unittest.TestCase):
         with closing(PyannoDatabase(self.tmp_filename)) as db:
             id1 = db.get_available_id()
             self.assertEqual(id1, '<name_0>')
-            self.assert_(not db.database.has_key(id1))
+            self.assertTrue(id1 not in db.database)
             db.store_result(id1, self.anno_container1,
                             self.model1, self.value1)
 
             id2 = db.get_available_id()
             self.assertNotEqual(id1, id2)
-            self.assert_(not db.database.has_key(id2))
+            self.assertTrue(id2 not in db.database)
 
 
 if __name__ == '__main__':

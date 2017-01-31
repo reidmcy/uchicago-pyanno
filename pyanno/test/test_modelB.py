@@ -49,14 +49,14 @@ class TestModelB(unittest.TestCase):
         nsamples = 1000
         pis = np.zeros((nsamples, nclasses))
         thetas = np.zeros((nsamples, nannotators, nclasses, nclasses))
-        for n in xrange(nsamples):
+        for n in range(nsamples):
             model = ModelB.create_initial_state(nclasses, nannotators,
                                                 alpha, beta)
             pis[n,:] = model.pi
             thetas[n,...] = model.theta
         assert_is_dirichlet(pis, beta)
-        for j in xrange(nannotators):
-            for k in xrange(nclasses):
+        for j in range(nannotators):
+            for k in range(nclasses):
                 assert_is_dirichlet(thetas[:,j,k,:], alpha[k,:])
 
 
@@ -68,7 +68,7 @@ class TestModelB(unittest.TestCase):
 
         nsamples = 1000
         labels = np.empty((nsamples, nitems), dtype=int)
-        for i in xrange(nsamples):
+        for i in range(nsamples):
             labels[i] = model.generate_labels(nitems)
 
         # NOTE here we make use of the fact that the prior is the same for all
@@ -87,18 +87,18 @@ class TestModelB(unittest.TestCase):
         # test functionality of generate_annotations method
         anno = model.generate_annotations(100)
         self.assertEqual(anno.shape[0], 100)
-        self.assert_(model.are_annotations_compatible(anno))
+        self.assertTrue(model.are_annotations_compatible(anno))
 
         # check that returned annotations match the prior
         nsamples = 3000
         labels = np.arange(nclasses)
 
         annotations = np.empty((nsamples, nitems, nannotators), dtype=int)
-        for i in xrange(nsamples):
+        for i in range(nsamples):
             annotations[i,:,:] = model.generate_annotations_from_labels(labels)
 
-        for j in xrange(nannotators):
-            for i in xrange(nitems):
+        for j in range(nannotators):
+            for i in range(nitems):
                 # NOTE here we use the fact the the prior is the same for all
                 # annotators
                 tmp = annotations[:,i,j]
@@ -211,7 +211,7 @@ class TestModelB(unittest.TestCase):
 
         max_llhood = true_model.log_likelihood(annotations)
         # perturb pi
-        for _ in xrange(20):
+        for _ in range(20):
             theta = true_model.theta
             pi = np.random.normal(loc=true_model.pi, scale=0.1)
             pi = np.clip(pi, 0.001, 1.)
@@ -222,12 +222,12 @@ class TestModelB(unittest.TestCase):
             self.assertGreater(max_llhood, llhood)
 
         # perturb theta
-        for _ in xrange(20):
+        for _ in range(20):
             pi = true_model.pi
             theta = np.random.normal(loc=true_model.theta, scale=0.1)
             theta = np.clip(theta, 0.001, 1.)
-            for j in xrange(nannotators):
-                for k in xrange(nclasses):
+            for j in range(nannotators):
+                for k in range(nclasses):
                     theta[j,k,:] /= theta[j,k,:].sum()
             model = ModelB(nclasses, nannotators, pi=pi, theta=theta,
                            alpha=true_model.alpha, beta=true_model.beta)
@@ -331,7 +331,7 @@ class TestModelB(unittest.TestCase):
         init_accuracy = 0.6
         mle_em_generator = model._map_em_step(annotations, init_accuracy)
         for i in range(3):
-            objective, _, _, _ = mle_em_generator.next()
+            objective, _, _, _ = next(mle_em_generator)
 
         self.assertFalse(np.isnan(objective))
 

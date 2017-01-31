@@ -57,7 +57,7 @@ class TestModelA(unittest.TestCase):
 
         # map of agreement index to number of different items
         agreement_to_number = {0: 1, 1: 2, 2: 2, 3: 2, 4: 3}
-        for i in xrange(nitems):
+        for i in range(nitems):
             self.assertEqual(len(set(annotations[i,:])),
                              agreement_to_number[agreement[i]])
 
@@ -134,7 +134,7 @@ class TestModelA(unittest.TestCase):
 
         max_llhood = true_model.log_likelihood(annotations)
         # perturb omega
-        for _ in xrange(20):
+        for _ in range(20):
             theta = true_model.theta
             omega = np.random.normal(loc=true_model.omega, scale=0.1)
             omega = np.clip(omega, 0.001, 0.999)
@@ -144,7 +144,7 @@ class TestModelA(unittest.TestCase):
             self.assertGreater(max_llhood, llhood)
 
         # perturb theta
-        for _ in xrange(20):
+        for _ in range(20):
             omega = true_model.omega
             theta = np.random.normal(loc=true_model.theta, scale=0.1)
             theta = np.clip(theta, 0., 1.)

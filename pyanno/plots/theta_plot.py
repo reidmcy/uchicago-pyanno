@@ -146,7 +146,7 @@ class ThetaScatterPlot(ModelView, PyannoPlotContainer):
         label_axis = LabelAxis(
             theta_plot,
             orientation = 'bottom',
-            positions = range(1, theta_len+1),
+            positions = list(range(1, theta_len+1)),
             labels = label_list,
             label_rotation = 0
         )
@@ -207,7 +207,7 @@ class ThetaScatterPlot(ModelView, PyannoPlotContainer):
         }
 
         name_value = [(_w_idx(name, idx), value)
-                      for name, value in data_dict.items()]
+                      for name, value in list(data_dict.items())]
         return name_value
 
     @on_trait_change('theta_plot_data,theta_samples_valid,redraw')

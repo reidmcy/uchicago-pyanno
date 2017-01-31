@@ -140,7 +140,7 @@ class ThetaTensorPlot(PyannoPlotContainer):
         # create a plot data object and give it this data
         plot_data = ArrayPlotData()
 
-        plot_data.set_data('classes', range(nclasses))
+        plot_data.set_data('classes', list(range(nclasses)))
 
         # create the plot
         plot = Plot(plot_data)
